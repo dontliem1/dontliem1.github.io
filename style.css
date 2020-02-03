@@ -1,7 +1,8 @@
+/*noinspection CssInvalidPropertyValue*/
 @font-face {
     font-family: 'PTRootUIWebVF';
     src: url('media/font/PTRootUI_VF.woff2') format('woff2'), url('media/font/PTRootUI_VF.woff') format('woff');
-    font-weight: normal;
+    font-weight: 100 700;
     font-style: normal;
     font-display: swap;
 }
@@ -28,7 +29,7 @@ body {
 }
 main {
     padding: 1em 1.5em 2em;
-    flex-basis: 25em;
+    flex-basis: 22em;
     flex-grow: 2;
 }
 aside {
@@ -37,20 +38,52 @@ aside {
 }
 aside img {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     vertical-align: middle;
     object-fit: cover;
+    object-position: top;
+}
+p, li, h2 {
+    line-height: 1.4;
 }
 a {
     color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+h2 {
+    display: inline-block;
+    font-size: 100%;
+    font-weight: normal;
+    margin: 0 1em .5em 0;
+}
+ul {
+    display: inline;
+    list-style: none;
+    padding-left: 0;
+}
+li {
+    display: inline-block;
+    margin-bottom: .5em;
+}
+li:not(:last-child) {
+    margin-right: 1em;
+}
+abbr {
+    text-decoration: none;
 }
 h1 {
     font-size: 200%;
+    margin-bottom: 0;
 }
-@supports (font-variation-settings: 'wdth' 900) {
-    h1, h2 {
+@supports (font-variation-settings: 'wdth' 700) {
+    h1 {
         font-weight: normal;
-        font-variation-settings: 'wght' 900;
+        font-variation-settings: 'wght' 700;
+    }
+    h2 {
+        font-variation-settings: 'wght' 400;
     }
     h1 {
         animation: wiggle 3s alternate infinite;
@@ -60,19 +93,20 @@ h1 {
             font-variation-settings: 'wght' 100;
         }
         to {
-            font-variation-settings: 'wght' 900;
+            font-variation-settings: 'wght' 700;
         }
     }
 }
-@media (min-width: 59em) {
+@media (min-width: 82em) {
     html {
         font-size: 125%;
     }
-}
-@media (min-width: 80em) {
-    html {
-        font-size: 150%;
+    h1 {
+        font-size: 300%;
     }
 }
 @media (min-width: 118em) {
+    html {
+        font-size: 150%;
+    }
 }
