@@ -22,7 +22,7 @@ body {
 /*noinspection CssInvalidMediaFeature*/
 @media (prefers-color-scheme: dark) {
     body   {
-        background-color: #111;
+        background-color: #202020;
         color: white;
     }
 }
