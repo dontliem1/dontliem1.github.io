@@ -38,8 +38,36 @@ aside img {
     object-fit: cover;
     object-position: top;
 }
-p, li, h2 {
+
+h1 {
+    font-size: 200%;
+    margin-top: .5em;
+    margin-bottom: 0;
+    text-indent: -.05em;
+}
+@supports (font-variation-settings: 'wdth' 700) {
+    h1 {
+        font-weight: normal;
+        font-variation-settings: 'wght' 700;
+        animation: wiggle 3s alternate infinite;
+    }
+    h2 {
+        font-variation-settings: 'wght' 400;
+    }
+    @keyframes wiggle {
+        from {
+            font-variation-settings: 'wght' 100;
+        }
+        to {
+            font-variation-settings: 'wght' 700;
+        }
+    }
+}
+h1, h2, p, li {
     line-height: 1.5;
+}
+abbr {
+    text-decoration: none;
 }
 a {
     color: inherit;
@@ -63,51 +91,36 @@ a:hover {
         border-bottom-color: #fff;
     }
 }
+/*noinspection CssOverwrittenProperties*/
+.features-list {
+    list-style-type: none;
+    list-style-type: '— ';
+    padding-left: 1em;
+    margin-top: 0;
+}
+.features-list li {
+    margin-bottom: .5em;
+}
 h2 {
     display: inline-block;
     font-size: 100%;
     font-weight: normal;
     margin: 0 1em .5em 0;
 }
-ul {
+.works-list {
     display: inline;
     list-style: none;
     padding-left: 0;
 }
-li {
+.works-list li {
     display: inline-block;
     margin-bottom: .5em;
 }
-li:not(:last-child) {
+.works-list li:not(:last-child) {
     margin-right: 1em;
 }
-abbr {
-    text-decoration: none;
-}
-h1 {
-    font-size: 200%;
-    margin-bottom: 0;
-}
-@supports (font-variation-settings: 'wdth' 700) {
-    h1 {
-        font-weight: normal;
-        font-variation-settings: 'wght' 700;
-        animation: wiggle 3s alternate infinite;
-    }
-    h2 {
-        font-variation-settings: 'wght' 400;
-    }
-    @keyframes wiggle {
-        from {
-            font-variation-settings: 'wght' 100;
-        }
-        to {
-            font-variation-settings: 'wght' 700;
-        }
-    }
-}
 @media (min-width: 82em) {
-    html {
+    body {
         font-size: 125%;
     }
     h1 {
@@ -115,7 +128,7 @@ h1 {
     }
 }
 @media (min-width: 118em) {
-    html {
-        font-size: 150%;
+    body {
+        font-size: 137.5%;
     }
 }
