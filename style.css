@@ -126,6 +126,9 @@ h2 {
     h1 {
         font-size: 300%;
     }
+    body, h2 {
+        font-variation-settings: 'wght' 100;
+    }
 }
 @media (min-width: 118em) {
     body {
