@@ -32,11 +32,15 @@ aside {
 }
 aside img {
     width: 100%;
-    min-height: 100%;
     height: auto;
     vertical-align: middle;
-    object-fit: cover;
-    object-position: top;
+}
+@supports (object-fit: cover) {
+    aside img {
+        min-height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
 }
 
 h1 {
