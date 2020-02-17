@@ -17,6 +17,10 @@ body {
     font-family: 'PTRootUIWebVF', sans-serif;
     font-variation-settings: 'wght' 400;
 }
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
 code {
     display: inline-block;
     font-family: 'PT Mono', monospace;
