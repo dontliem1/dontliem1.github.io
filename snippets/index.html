@@ -16,11 +16,11 @@
         <h1>Фрагменты кода</h1>
         <ul>
             <li><a class="link-dashed" href="#js">JS</a></li>
+            <li><a class="link-dashed" href="#css">CSS</a></li>
         </ul>
     </nav>
 </header>
 <main>
-    <p>Кусочки кода, которые пригождаются в работе верстальщика. База активно пополняется.</p>
     <section id="js">
         <h2>JavaScript</h2>
         <article id="js_format">
@@ -34,11 +34,31 @@
 function formatNumber(num) {
     return num.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');
 }</code></pre>
-            <form oninput="document.getElementById('js_without_format_output').innerText = number.value; document.getElementById('js_format_output').innerText = number.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');">
+            <form oninput="document.getElementById('js_without_format_output').innerText = number.value; document.getElementById('js_format_output').textContent = number.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');">
                 <input type="submit" disabled hidden/>
-                <p><label>Число: <input id="js_format_input" type="number" name="number" value="10000.5"/></label></p>
-                <p><label>Без форматирования: <output for="js_format_input" id="js_without_format_output" name="output">10000.5</output></label></p>
-                <p><label>С форматированием: <output for="js_format_input" id="js_format_output" name="output">10 000,5</output></label></p>
+                <p><label>Число: <input id="js_format_input" type="number" name="number" value="1000000"/></label></p>
+                <p><label>Без форматирования: <output for="js_format_input" id="js_without_format_output" name="output">1000000</output></label></p>
+                <p><label>С форматированием: <output for="js_format_input" id="js_format_output" name="output">1 000 000</output></label></p>
+            </form>
+        </article>
+        <article id="js_tel">
+            <h3>Форматирование российских телефонных номеров</h3>
+            <pre><code>const telInputs = document.querySelectorAll('input[type=tel]');
+for (let i = 0; i < telInputs.length; i++) {
+    telInputs[i].addEventListener('input', function(e) {
+        let cleaned = e.target.value.replace(/\D/g, '');
+        if (['7','8'].indexOf(cleaned[0]) >= 0) {
+            cleaned = cleaned.substring(1);
+        }
+        let match = cleaned.match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/);
+        if (match) {
+            e.target.value = ['+7 ', match[1], ' ', match[2], '-', match[3], '-', match[4]].join('');
+        }
+    });
+}</code></pre>
+            <form>
+                <input type="submit" disabled hidden/>
+                <p><label>Номер телефона: <input type="tel" placeholder="+7 999 999-99-99" name="tel" size="16" minlength="10" maxlength="18" oninput="let cleaned = this.value.replace(/\D/g, ''); if (['7','8'].indexOf(cleaned[0]) >= 0) {cleaned = cleaned.substring(1);} let match = cleaned.match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/); if (match) {this.value = ['+7 ', match[1], ' ', match[2], '-', match[3], '-', match[4]].join('');}"></label></p>
             </form>
         </article>
         <article id="js_invert">
@@ -47,12 +67,111 @@ function formatNumber(num) {
             <p>Поддерживаемый пустой атрибут<br><code>this.hidden ^= true;</code></p>
             <p>Неподдерживаемый пустой атрибут<br><code>(this.getAttribute('open') === null) ? this.setAttribute('open', '') : this.removeAttribute('open');</code></p>
         </article>
-        <article id="js_yandex">
+        <article id="js_metrics">
             <h3>Триггер событий Яндекс Метрики</h3>
             <code>yaCounterXXXXXXXX.reachGoal('event');</code>
         </article>
+        <article id="js_rem">
+            <h3>Использование относительных единиц</h3>
+            <pre><code>/**
+ * Переводит rem в пиксели
+ *
+ * @param rem {number} Кол-во rem
+ * @returns {number} Сколько пикселей содержится в исходных rem
+ */
+function remToPx(rem) {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}</code></pre>
+            <form id="js_rem_form" oninput="px.value = rem.value*parseFloat(getComputedStyle(document.documentElement).fontSize);">
+                <input type="submit" disabled hidden/>
+                <label><input name="rem" type="number" max="999" placeholder="0" min="0">rem</label> = <label><output name="px">0</output>px</label>
+            </form>
+            <p>Медиа запросы<br><code>if (window.matchMedia('(max-width: 40em)').matches) {doSomething();}</code></p>
+        </article>
+    </section>
+    <section id="css">
+        <h2>CSS</h2>
+        <article id="css_iframe">
+            <h3>16/9 &lt;iframe&gt;</h3>
+            <pre><code>.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}</code></pre>
+            <div style="max-width: 560px;">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" width="560" height="315" src="https://www.youtube-nocookie.com/embed/IS_FqA3K_YI?start=300" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </article>
+        <article id="css_fonts">
+            <h3>Подключение шрифтов</h3>
+            <pre><code>@font-face {
+    font-family: "PT Mono";
+    src: url("../fonts/PTM55F_W.woff2") format("woff2"),
+         url("../fonts/PTM55F_W.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "PT Mono";
+    src: url("../fonts/PTM75F_W.woff2") format("woff2"),
+         url("../fonts/PTM75F_W.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+code {
+    font-family: "PT Mono", monospace;
+}</code></pre>
+        </article>
+        <article id="css_boilerplate">
+            <h3>Шаблон CSS</h3>
+            <pre><code>html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+}
+img {
+    vertical-align: middle;
+}
+.container {
+    box-sizing: border-box;
+    max-width: 25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 59em) {
+    .container {
+        max-width: 59rem;
+    }
+}
+@media (min-width: 80em) {
+    body {
+        font-size: 135%;
+    }
+}
+@media (min-width: 118em) {
+    body {
+        font-size: 175%;
+    }
+}</code></pre>
+        </article>
     </section>
 </main>
+<template id="copy_btn" hidden><button class="btn-copy" aria-label="Скопировать фрагмент кода" title="Скопировать" type="button">📋</button></template>
 <script>
     const articles = document.getElementsByTagName('article');
     for (let i = 0; i < articles.length; i++) {
@@ -63,6 +182,35 @@ function formatNumber(num) {
         a.classList.add('link-anchor');
         h3.textContent += ' ';
         h3.appendChild(a);
+    }
+    const snippets = document.getElementsByTagName('code'),
+        origin = document.getElementById('copy_btn');
+    if ('content' in document.createElement('template')) {
+        for (let i = 0; i < snippets.length; i++) {
+            let clone = document.importNode(origin.content, true);
+            snippets[i].prepend(clone);
+        }
+    } else {
+        for (let i = 0; i < snippets.length; i++) {
+            snippets[i].innerHTML = origin.innerHTML + snippets[i].innerHTML;
+        }
+    }
+    let copyButtons = document.getElementsByClassName('btn-copy');
+    for (let i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].addEventListener('click',function (e) {
+            // noinspection JSUnresolvedVariable
+            let str = e.target.parentElement.textContent.substr(2);
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(str);
+            } else {
+                let el = document.createElement('textarea');
+                el.value = str;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+            }
+        })
     }
 </script>
 </body>
