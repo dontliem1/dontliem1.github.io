@@ -146,7 +146,6 @@ img {
     vertical-align: middle;
 }
 .container {
-    box-sizing: border-box;
     max-width: 25rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -155,7 +154,7 @@ img {
 }
 @media (min-width: 59em) {
     .container {
-        max-width: 59rem;
+        max-width: 56rem;
     }
 }
 @media (min-width: 80em) {
@@ -198,7 +197,6 @@ img {
     let copyButtons = document.getElementsByClassName('btn-copy');
     for (let i = 0; i < copyButtons.length; i++) {
         copyButtons[i].addEventListener('click',function (e) {
-            // noinspection JSUnresolvedVariable
             let str = e.target.parentElement.textContent.substr(2);
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(str);
@@ -210,6 +208,10 @@ img {
                 document.execCommand('copy');
                 document.body.removeChild(el);
             }
+            e.target.classList.add('copied');
+            setTimeout(function(){
+                e.target.classList.remove('copied');
+            },2000);
         })
     }
 </script>

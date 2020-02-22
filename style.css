@@ -119,7 +119,7 @@ h3 {
         }
     }
 }
-h1, h2, p, li {
+h1, h2, p, li, code {
     line-height: 1.5;
 }
 abbr {
@@ -209,6 +209,34 @@ abbr {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    position: relative;
+}
+.btn-copy::before {
+    content: 'Код скопирован';
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: left;
+    white-space: nowrap;
+    background-color: #444;
+    font-family: 'PTRootUIWebVF', sans-serif;
+    color: #fff;
+    padding: .5em;
+    border-bottom-left-radius: .5em;
+    transition: opacity 2s;
+    display: none;
+}
+.btn-copy.copied::before {
+    display: inline-block;
+    animation: appear 2s;
+}
+@keyframes appear {
+    0%, 100% {
+        opacity: 0;
+    }
+    25%, 75% {
+        opacity: 1;
+    }
 }
 @media (min-width: 82em) {
     body {
