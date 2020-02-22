@@ -238,6 +238,28 @@ abbr {
         opacity: 1;
     }
 }
+.list-dashes {
+    list-style-type: none;
+    padding-left: 1em;
+}
+.list-dashes>li {
+    margin-bottom: .5em;
+    text-indent: -1em;
+}
+.list-dashes>li::before {
+    content: '— ';
+}
+@supports (list-style-type: '— ') {
+    .list-dashes {
+        list-style-type: '— ';
+    }
+    .list-dashes>li {
+        text-indent: 0;
+    }
+    .list-dashes>li::before {
+        display: none;
+    }
+}
 @media (min-width: 82em) {
     body {
         font-size: 125%;

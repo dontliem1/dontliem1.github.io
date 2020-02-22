@@ -133,6 +133,36 @@ code {
     font-family: "PT Mono", monospace;
 }</code></pre>
         </article>
+        <article id="css_dashes">
+            <h3>Списки с тире</h3>
+            <pre><code>.list-dashes {
+    list-style-type: none;
+    padding-left: 1em;
+}
+.list-dashes>li {
+    margin-bottom: .5em;
+    text-indent: -1em;
+}
+.list-dashes>li::before {
+    content: '— ';
+}
+@supports (list-style-type: '— ') {
+    .list-dashes {
+        list-style-type: '— ';
+    }
+    .list-dashes>li {
+        text-indent: 0;
+    }
+    .list-dashes>li::before {
+        display: none;
+    }
+}</code></pre>
+            <ul class="list-dashes">
+                <li>Special ops forces, like the Green Berets or Navy Seals, use small teams and rapid deployment to accomplish tasks that other units are too big or too slow to get done.</li>
+                <li>The White Stripes embrace constraints by sticking to a simple formula: two people, streamlined songs, childlike drumming, keeping studio time to a minimum, etc.</li>
+                <li>Apple’s iPod differentiates itself from competitors by not offering features like a built-in fm radio or a voice recorder.</li>
+            </ul>
+        </article>
         <article id="css_boilerplate">
             <h3>Шаблон CSS</h3>
             <pre><code>html {
