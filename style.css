@@ -30,7 +30,7 @@ code {
     background-color: #f0f0f0;
     color: #333;
 }
-pre>code {
+pre > code {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
 }
@@ -49,21 +49,29 @@ main {
     flex-wrap: wrap;
     min-height: 100%;
 }
-.snippets-nav {
+.snippets-header {
     padding: 1em 1.5em 1em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-}
-.snippets-nav ul {
-    list-style: none;
-    padding-left: 0;
-}
-.snippets-nav li {
     display: inline-block;
 }
-.snippets-nav li:not(:last-child) {
+.snippets-header h1 {
+    margin: 0;
+}
+.snippets-aside {
+    padding: 1em 1.5em 1em;
+    display: inline-block;
+}
+.snippets-aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.snippets-aside li {
+    display: inline-block;
+}
+.snippets-aside li ul {
+    display: none;
+}
+.snippets-aside li:not(:last-child) {
     margin-right: 1em;
 }
 aside {
@@ -82,8 +90,14 @@ aside img {
         object-position: top;
     }
 }
-input {
+input, .btn {
     font: inherit;
+}
+.btn {
+    touch-action: manipulation;
+}
+.btn:enabled {
+    cursor: pointer;
 }
 
 h1 {
@@ -104,12 +118,15 @@ h3 {
         font-variation-settings: 'wght' 700;
         animation: wiggle 3s alternate infinite;
     }
+
     h2, h3 {
         font-variation-settings: 'wght' 700;
     }
+
     .text-header {
         font-variation-settings: 'wght' 400;
     }
+
     @keyframes wiggle {
         from {
             font-variation-settings: 'wght' 100;
@@ -130,7 +147,7 @@ abbr {
     text-decoration: none;
     transition: border-bottom-color .2s;
     border-bottom-width: 1px;
-    border-bottom-color:rgba(0,0,0,.5);
+    border-bottom-color: rgba(0, 0, 0, .5);
 }
 .link-solid {
     border-bottom-style: solid;
@@ -144,30 +161,23 @@ abbr {
 }
 /*noinspection CssInvalidMediaFeature*/
 @media (prefers-color-scheme: dark) {
-    body   {
+    body {
         background-color: #202020;
         color: white;
     }
+
     .link-solid, .link-dashed {
-        border-bottom-color: rgba(255,255,255,.5);
+        border-bottom-color: rgba(255, 255, 255, .5);
     }
+
     .link-solid:hover, .link-dashed:hover {
         border-bottom-color: #fff;
     }
+
     code {
         background-color: #2b2b2b;
-        color: #A9B7C6;
+        color: #a9b7c6;
     }
-}
-/*noinspection CssOverwrittenProperties*/
-.features-list {
-    list-style-type: none;
-    list-style-type: '— ';
-    padding-left: 1em;
-    margin-top: 0;
-}
-.features-list li {
-    margin-bottom: .5em;
 }
 .text-header {
     display: inline-block;
@@ -238,37 +248,94 @@ abbr {
         opacity: 1;
     }
 }
+#js_invert_target {display: inline-block;}
+#js_invert_target[aria-pressed=false]::before {content: 'aria-pressed="false"';}
+#js_invert_target[aria-pressed=true]::before {content: 'aria-pressed="true"';}
+#js_invert_target[hidden]::after {content: ' hidden';}
+#js_invert_target[open]::after {content: ' open';}
 .list-dashes {
     list-style-type: none;
     padding-left: 1em;
 }
-.list-dashes>li {
+.list-dashes > li {
     margin-bottom: .5em;
     text-indent: -1em;
 }
-.list-dashes>li::before {
+.list-dashes > li::before {
     content: '— ';
 }
 @supports (list-style-type: '— ') {
     .list-dashes {
         list-style-type: '— ';
     }
-    .list-dashes>li {
+
+    .list-dashes > li {
         text-indent: 0;
     }
-    .list-dashes>li::before {
+
+    .list-dashes > li::before {
         display: none;
+    }
+}
+@supports (padding-inline-start: 1em) {
+    .list-dashes {
+        padding-left: 0;
+        padding-inline-start: 1em;
     }
 }
 @media (min-width: 82em) {
     body {
         font-size: 125%;
     }
+
     h1 {
         font-size: 300%;
     }
+
     body, .text-header {
         font-variation-settings: 'wght' 100;
+    }
+    @supports (display: grid) {
+        .snippets-body {
+            display: grid;
+            grid-template-columns: auto max-content;
+        }
+
+        .snippets-aside {
+            grid-column: 2/3;
+            grid-row: 1/3;
+        }
+
+        .snippets-aside nav {
+            position: sticky;
+            top: 1em;
+        }
+
+        .snippets-aside nav > ul > li:not(:last-child) {
+            margin-bottom: 1.5em;
+        }
+
+        .snippets-aside nav > ul > li > a {
+            font-size: 125%;
+            border-bottom: 0;
+        }
+
+        .snippets-aside li ul {
+            display: block;
+            padding-left: .5em;
+        }
+
+        .snippets-aside li li {
+            margin-top: .5em;
+        }
+
+        .snippets-aside li {
+            display: block;
+            margin-right: 0;
+        }
+        .link-anchor {
+            display: none;
+        }
     }
 }
 @media (min-width: 118em) {

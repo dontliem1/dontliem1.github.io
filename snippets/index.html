@@ -10,16 +10,33 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Mono&display=swap&subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-<header>
-    <nav class="snippets-nav">
-        <h1>Фрагменты кода</h1>
+<body class="snippets-body">
+<header class="snippets-header">
+    <h1>Фрагменты кода</h1>
+</header>
+<aside class="snippets-aside">
+    <nav>
         <ul>
-            <li><a class="link-dashed" href="#js">JS</a></li>
-            <li><a class="link-dashed" href="#css">CSS</a></li>
+            <li><a class="link-dashed" href="#js">JS</a>
+                <ul>
+                    <li><a class="link-dashed" href="#js_format">Форматирование чисел</a></li>
+                    <li><a class="link-dashed" href="#js_tel">Форматирование номеров</a></li>
+                    <li><a class="link-dashed" href="#js_invert">Инверсия логических атрибутов</a></li>
+                    <li><a class="link-dashed" href="#js_metrics">Триггер событий Яндекс Метрики</a></li>
+                    <li><a class="link-dashed" href="#js_rem">Использование относительных единиц</a></li>
+                </ul>
+            </li>
+            <li><a class="link-dashed" href="#css">CSS</a>
+                <ul>
+                    <li><a class="link-dashed" href="#css_iframe">16/9 &lt;iframe&gt;</a></li>
+                    <li><a class="link-dashed" href="#css_fonts">Подключение шрифтов</a></li>
+                    <li><a class="link-dashed" href="#css_dashes">Списки с тире</a></li>
+                    <li><a class="link-dashed" href="#css_boilerplate">Шаблон CSS</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
-</header>
+</aside>
 <main>
     <section id="js">
         <h2>JavaScript</h2>
@@ -44,7 +61,7 @@ function formatNumber(num) {
         <article id="js_tel">
             <h3>Форматирование российских телефонных номеров</h3>
             <pre><code>const telInputs = document.querySelectorAll('input[type=tel]');
-for (let i = 0; i < telInputs.length; i++) {
+for (let i = 0; i &lt; telInputs.length; i++) {
     telInputs[i].addEventListener('input', function(e) {
         let cleaned = e.target.value.replace(/\D/g, '');
         if (['7','8'].indexOf(cleaned[0]) >= 0) {
@@ -63,9 +80,11 @@ for (let i = 0; i < telInputs.length; i++) {
         </article>
         <article id="js_invert">
             <h3>Инверсия логических атрибутов</h3>
-            <p>ARIA-атрибут<br><code>this.setAttribute('aria-expanded', (this.getAttribute('aria-expanded') === 'false'));</code></p>
-            <p>Поддерживаемый пустой атрибут<br><code>this.hidden ^= true;</code></p>
-            <p>Неподдерживаемый пустой атрибут<br><code>(this.getAttribute('open') === null) ? this.setAttribute('open', '') : this.removeAttribute('open');</code></p>
+            <p>ARIA-атрибут<br><code>el.setAttribute('aria-expanded', (el.getAttribute('aria-expanded') === 'false'));</code></p>
+            <p>Поддерживаемый пустой атрибут<br><code>el.hidden ^= true;</code></p>
+            <p>Неподдерживаемый пустой атрибут<br><code>(el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');</code></p>
+            <button class="btn" type="button" aria-controls="js_invert_target" onclick="let el = document.getElementById(this.getAttribute('aria-controls')); el.setAttribute('aria-pressed', (el.getAttribute('aria-pressed') === 'false')); el.hidden ^= true; (el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');">Инвертировать атрибуты</button>
+            <span id="js_invert_target" aria-pressed="false" hidden></span>
         </article>
         <article id="js_metrics">
             <h3>Триггер событий Яндекс Метрики</h3>
@@ -82,9 +101,23 @@ for (let i = 0; i < telInputs.length; i++) {
 function remToPx(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }</code></pre>
-            <form id="js_rem_form" oninput="px.value = rem.value*parseFloat(getComputedStyle(document.documentElement).fontSize);">
+            <form id="js_rem2px_form" oninput="this.querySelector('[name=px]').textContent = rem.value*parseFloat(getComputedStyle(document.documentElement).fontSize);">
                 <input type="submit" disabled hidden/>
-                <label><input name="rem" type="number" max="999" placeholder="0" min="0">rem</label> = <label><output name="px">0</output>px</label>
+                <p>
+                    <label><input name="rem" type="number" max="999" placeholder="0" min="0">rem</label>
+                    =
+                    <label><output name="px">0</output>px</label>
+                </p>
+            </form>
+            <form id="js_rem_form" oninput="this.querySelector('[name=rem]').textContent = px.value/parseFloat(getComputedStyle(document.documentElement).fontSize); this.querySelector('[name=percent]').textContent = px.value/parseFloat(getComputedStyle(document.documentElement).fontSize)*100;">
+                <input type="submit" disabled hidden/>
+                <p>
+                    <label><input name="px" type="number" max="999" placeholder="0" min="0">px</label>
+                    =
+                    <label><output name="rem">0</output>rem</label>
+                    =
+                    <label><output name="percent">0</output>%</label>
+                </p>
             </form>
             <p>Медиа запросы<br><code>if (window.matchMedia('(max-width: 40em)').matches) {doSomething();}</code></p>
         </article>
@@ -135,26 +168,33 @@ code {
         </article>
         <article id="css_dashes">
             <h3>Списки с тире</h3>
+            <p>Значение padding и text-indent зависит от ширины тире в шрифте.</p>
             <pre><code>.list-dashes {
     list-style-type: none;
     padding-left: 1em;
 }
-.list-dashes>li {
+.list-dashes > li {
     margin-bottom: .5em;
     text-indent: -1em;
 }
-.list-dashes>li::before {
+.list-dashes > li::before {
     content: '— ';
 }
 @supports (list-style-type: '— ') {
     .list-dashes {
         list-style-type: '— ';
     }
-    .list-dashes>li {
+    .list-dashes > li {
         text-indent: 0;
     }
-    .list-dashes>li::before {
+    .list-dashes > li::before {
         display: none;
+    }
+}
+@supports (padding-inline-start: 1em) {
+    .list-dashes {
+        padding-left: 0;
+        padding-inline-start: 1em;
     }
 }</code></pre>
             <ul class="list-dashes">
@@ -242,6 +282,7 @@ img {
             setTimeout(function(){
                 e.target.classList.remove('copied');
             },2000);
+            e.target.blur();
         })
     }
 </script>
