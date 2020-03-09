@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <link href="https://fonts.googleapis.com/css?family=PT+Mono&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
 <body class="snippets-body">
 <header class="snippets-header">
-    <h1>Фрагменты кода</h1>
+    <a href="../" aria-label="На главную страницу"></a><h1>Фрагменты кода</h1>
 </header>
 <aside class="snippets-aside">
     <nav>
@@ -32,6 +32,12 @@
                     <li><a class="link-dashed" href="#css_fonts">Подключение шрифтов</a></li>
                     <li><a class="link-dashed" href="#css_dashes">Списки с тире</a></li>
                     <li><a class="link-dashed" href="#css_boilerplate">Шаблон CSS</a></li>
+                </ul>
+            </li>
+            <li><a class="link-dashed" href="#php">PHP</a>
+                <ul>
+                    <li><a class="link-dashed" href="#php_format">Форматирование чисел</a></li>
+                    <li><a class="link-dashed" href="#php_tel">Телефонные ссылки</a></li>
                 </ul>
             </li>
         </ul>
@@ -236,6 +242,35 @@ img {
     body {
         font-size: 175%;
     }
+}</code></pre>
+        </article>
+    </section>
+    <section id="php">
+        <h2>PHP</h2>
+        <article id="php_format">
+            <h3>Форматирование чисел</h3>
+            <pre><code>/**
+* Расставляет неразрывные пробелы между разрядами и округляет дробную часть
+*
+* @param int $number Исходное число
+*
+* @return void|string Строка с отформатированным числом
+*/
+function number_format_groups($number) {
+    return number_format($number, 0, ',', ' ');
+}</code></pre>
+        </article>
+        <article id="php_tel">
+            <h3>Телефонные ссылки</h3>
+            <pre><code>/**
+* Создание URL-ссылки из номера телефона 
+*
+* @param string $tel Номер телефона, например '+7 (999) 999-99-99'
+*
+* @return string URL для атрибута href, например 'tel:%2B79999999999'
+*/
+function telencode($tel) {
+    return 'tel:'.str_replace(['+', ' ', ' ', '(', ')', '-'], ['%2B'], $tel);
 }</code></pre>
         </article>
     </section>

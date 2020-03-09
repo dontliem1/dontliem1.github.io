@@ -53,7 +53,21 @@ main {
     padding: 1em 1.5em 1em;
     display: inline-block;
 }
+.snippets-header a {
+    display: inline-block;
+    color: inherit;
+    padding: .25em .55em .15em 0;
+}
+.snippets-header a::before {
+    content: '';
+    display: block;
+    border-bottom: .125em solid;
+    border-left: .125em solid;
+    padding: .5em;
+    transform: rotate(45deg);
+}
 .snippets-header h1 {
+    display: inline;
     margin: 0;
 }
 .snippets-aside {
