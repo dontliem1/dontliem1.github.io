@@ -250,12 +250,12 @@ img {
         <article id="php_format">
             <h3>Форматирование чисел</h3>
             <pre><code>/**
-* Расставляет неразрывные пробелы между разрядами и округляет дробную часть
-*
-* @param int $number Исходное число
-*
-* @return void|string Строка с отформатированным числом
-*/
+ * Расставляет неразрывные пробелы между разрядами и округляет дробную часть
+ *
+ * @param int $number Исходное число
+ *
+ * @return void|string Строка с отформатированным числом
+ */
 function number_format_groups($number) {
     return number_format($number, 0, ',', ' ');
 }</code></pre>
@@ -263,12 +263,12 @@ function number_format_groups($number) {
         <article id="php_tel">
             <h3>Телефонные ссылки</h3>
             <pre><code>/**
-* Создание URL-ссылки из номера телефона 
-*
-* @param string $tel Номер телефона, например '+7 (999) 999-99-99'
-*
-* @return string URL для атрибута href, например 'tel:%2B79999999999'
-*/
+ * Создание URL-ссылки из номера телефона 
+ *
+ * @param string $tel Номер телефона, например '+7 (999) 999-99-99'
+ *
+ * @return string URL для атрибута href, например 'tel:%2B79999999999'
+ */
 function telencode($tel) {
     return 'tel:'.str_replace(['+', ' ', ' ', '(', ')', '-'], ['%2B'], $tel);
 }</code></pre>
