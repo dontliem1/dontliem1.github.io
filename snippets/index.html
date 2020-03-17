@@ -22,7 +22,6 @@
                     <li><a class="link-dashed" href="#js_format">Форматирование чисел</a></li>
                     <li><a class="link-dashed" href="#js_tel">Форматирование номеров</a></li>
                     <li><a class="link-dashed" href="#js_invert">Инверсия логических атрибутов</a></li>
-                    <li><a class="link-dashed" href="#js_metrics">Триггер событий Яндекс Метрики</a></li>
                     <li><a class="link-dashed" href="#js_rem">Использование относительных единиц</a></li>
                 </ul>
             </li>
@@ -91,10 +90,6 @@ for (let i = 0; i &lt; telInputs.length; i++) {
             <p>Неподдерживаемый пустой атрибут<br><code>(el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');</code></p>
             <button class="btn" type="button" aria-controls="js_invert_target" onclick="let el = document.getElementById(this.getAttribute('aria-controls')); el.setAttribute('aria-pressed', (el.getAttribute('aria-pressed') === 'false')); el.hidden ^= true; (el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');">Инвертировать атрибуты</button>
             <span id="js_invert_target" aria-pressed="false" hidden></span>
-        </article>
-        <article id="js_metrics">
-            <h3>Триггер событий Яндекс Метрики</h3>
-            <code>yaCounterXXXXXXXX.reachGoal('event');</code>
         </article>
         <article id="js_rem">
             <h3>Использование относительных единиц</h3>
@@ -274,6 +269,7 @@ function telencode($tel) {
 }</code></pre>
         </article>
     </section>
+    <a class="link-solid" href="dontliem1.snippetslablibrary" download>Скачать все фрагменты в формате SnippetsLab</a>
 </main>
 <template id="copy_btn" hidden><button class="btn-copy" aria-label="Скопировать фрагмент кода" title="Скопировать" type="button">📋</button></template>
 <script>
