@@ -247,11 +247,11 @@ img {
             <pre><code>/**
  * Расставляет неразрывные пробелы между разрядами и округляет дробную часть
  *
- * @param int $number Исходное число
+ * @param float $number Исходное число
  *
- * @return void|string Строка с отформатированным числом
+ * @return string Строка с отформатированным числом
  */
-function number_format_groups($number) {
+function number_format_groups(float $number): string {
     return number_format($number, 0, ',', ' ');
 }</code></pre>
         </article>
@@ -264,7 +264,7 @@ function number_format_groups($number) {
  *
  * @return string URL для атрибута href, например 'tel:%2B79999999999'
  */
-function telencode($tel) {
+function telencode(string $tel): string {
     return 'tel:'.str_replace(['+', ' ', ' ', '(', ')', '-'], ['%2B'], $tel);
 }</code></pre>
         </article>
