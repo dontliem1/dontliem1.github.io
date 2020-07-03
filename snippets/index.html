@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Фрагменты кода</title>
-    <meta name="description" content="Фрагменты кода, пригождающиеся в работе верстальщику.">
+    <title>Code snippets</title>
+    <meta name="description" content="Snippets of code in vanilla HTML, CSS and JS.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -13,59 +13,59 @@
 </head>
 <body class="snippets-body">
 <header class="snippets-header">
-    <a href="../" aria-label="На главную страницу"></a><h1>Фрагменты кода</h1>
+    <a href="../" aria-label="To Homepage."></a><h1>Code snippets</h1>
 </header>
 <aside class="snippets-aside">
     <nav>
         <ul>
             <li><a class="link-dashed" href="#js">JS</a>
                 <ul>
-                    <li><a class="link-dashed" href="#js_format">Форматирование чисел</a></li>
-                    <li><a class="link-dashed" href="#js_tel">Форматирование номеров</a></li>
-                    <li><a class="link-dashed" href="#js_invert">Инверсия логических атрибутов</a></li>
-                    <li><a class="link-dashed" href="#js_rem">Использование относительных единиц</a></li>
+                    <li><a class="link-dashed" href="#js_format">Russian format for numbers</a></li>
+                    <li><a class="link-dashed" href="#js_tel">Formatting Russian telephone numbers</a></li>
+                    <li><a class="link-dashed" href="#js_invert">Logic attributes inversion</a></li>
+                    <li><a class="link-dashed" href="#js_rem">Relative units</a></li>
                 </ul>
             </li>
             <li><a class="link-dashed" href="#css">CSS</a>
                 <ul>
                     <li><a class="link-dashed" href="#css_iframe">16/9 &lt;iframe&gt;</a></li>
-                    <li><a class="link-dashed" href="#css_fonts">Подключение шрифтов</a></li>
-                    <li><a class="link-dashed" href="#css_dashes">Списки с тире</a></li>
-                    <li><a class="link-dashed" href="#css_boilerplate">Шаблон CSS</a></li>
+                    <li><a class="link-dashed" href="#css_fonts">Fonts including</a></li>
+                    <li><a class="link-dashed" href="#css_dashes">List with dashes</a></li>
+                    <li><a class="link-dashed" href="#css_boilerplate">CSS Boilerplate</a></li>
                 </ul>
             </li>
             <li><a class="link-dashed" href="#php">PHP</a>
                 <ul>
-                    <li><a class="link-dashed" href="#php_format">Форматирование чисел</a></li>
-                    <li><a class="link-dashed" href="#php_tel">Телефонные ссылки</a></li>
+                    <li><a class="link-dashed" href="#php_format">Russian format for numbers</a></li>
+                    <li><a class="link-dashed" href="#php_tel">Telephone links</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
 </aside>
-<main>
+<main class="container">
     <section id="js">
         <h2>JavaScript</h2>
         <article id="js_format">
-            <h3>Форматирование чисел</h3>
+            <h3>Russian format for numbers</h3>
             <pre><code>/**
-* Расставляет пробелы между разрядами и заменяет точку на запятую
+* Formats numbers in Russian language
 *
-* @param num {number | string} Исходное число
-* @returns {void | string} Строка с отформатированным числом
+* @param num {number | string} Number
+* @returns {void | string} Formatted number
 */
 function formatNumber(num) {
     return num.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');
 }</code></pre>
             <form oninput="document.getElementById('js_without_format_output').innerText = number.value; document.getElementById('js_format_output').textContent = number.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');">
                 <input type="submit" disabled hidden/>
-                <p><label>Число: <input id="js_format_input" type="number" name="number" value="1000000"/></label></p>
-                <p><label>Без форматирования: <output for="js_format_input" id="js_without_format_output" name="output">1000000</output></label></p>
-                <p><label>С форматированием: <output for="js_format_input" id="js_format_output" name="output">1 000 000</output></label></p>
+                <p><label>Number: <input id="js_format_input" type="number" name="number" value="1000000"/></label></p>
+                <p><label>Without formatting: <output for="js_format_input" id="js_without_format_output" name="output">1000000</output></label></p>
+                <p><label>With formatting: <output for="js_format_input" id="js_format_output" name="output">1 000 000</output></label></p>
             </form>
         </article>
         <article id="js_tel">
-            <h3>Форматирование российских телефонных номеров</h3>
+            <h3>Formatting Russian telephone numbers</h3>
             <pre><code>const telInputs = document.querySelectorAll('input[type=tel]');
 for (let i = 0; i &lt; telInputs.length; i++) {
     telInputs[i].addEventListener('input', function(e) {
@@ -81,24 +81,24 @@ for (let i = 0; i &lt; telInputs.length; i++) {
 }</code></pre>
             <form>
                 <input type="submit" disabled hidden/>
-                <p><label>Номер телефона: <input type="tel" placeholder="+7 999 999-99-99" name="tel" size="16" minlength="10" maxlength="18" oninput="let cleaned = this.value.replace(/\D/g, ''); if (['7','8'].indexOf(cleaned[0]) >= 0) {cleaned = cleaned.substring(1);} let match = cleaned.match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/); if (match) {this.value = ['+7 ', match[1], ' ', match[2], '-', match[3], '-', match[4]].join('');}"></label></p>
+                <p><label>Telephone number: <input type="tel" placeholder="+7 999 999-99-99" name="tel" size="16" minlength="10" maxlength="18" oninput="let cleaned = this.value.replace(/\D/g, ''); if (['7','8'].indexOf(cleaned[0]) >= 0) {cleaned = cleaned.substring(1);} let match = cleaned.match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/); if (match) {this.value = ['+7 ', match[1], ' ', match[2], '-', match[3], '-', match[4]].join('');}"></label></p>
             </form>
         </article>
         <article id="js_invert">
-            <h3>Инверсия логических атрибутов</h3>
-            <p>ARIA-атрибут<br><code>el.setAttribute('aria-expanded', (el.getAttribute('aria-expanded') === 'false'));</code></p>
-            <p>Поддерживаемый пустой атрибут<br><code>el.hidden ^= true;</code></p>
-            <p>Неподдерживаемый пустой атрибут<br><code>(el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');</code></p>
-            <button class="btn" type="button" aria-controls="js_invert_target" onclick="let el = document.getElementById(this.getAttribute('aria-controls')); el.setAttribute('aria-pressed', (el.getAttribute('aria-pressed') === 'false')); el.hidden ^= true; (el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');">Инвертировать атрибуты</button>
+            <h3>Logic attributes inversion</h3>
+            <p>ARIA-attribute<br><code>el.setAttribute('aria-expanded', (el.getAttribute('aria-expanded') === 'false'));</code></p>
+            <p>Supported attribute<br><code>el.hidden ^= true;</code></p>
+            <p>Unsupported attribute<br><code>(el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');</code></p>
+            <button class="btn" type="button" aria-controls="js_invert_target" onclick="let el = document.getElementById(this.getAttribute('aria-controls')); el.setAttribute('aria-pressed', (el.getAttribute('aria-pressed') === 'false')); el.hidden ^= true; (el.getAttribute('open') === null) ? el.setAttribute('open', '') : el.removeAttribute('open');">Invert</button>
             <span id="js_invert_target" aria-pressed="false" hidden></span>
         </article>
         <article id="js_rem">
-            <h3>Использование относительных единиц</h3>
+            <h3>Relative units</h3>
             <pre><code>/**
- * Переводит rem в пиксели
+ * Converts rem to px
  *
- * @param rem {number} Кол-во rem
- * @returns {number} Сколько пикселей содержится в исходных rem
+ * @param rem {number} Number in rem
+ * @returns {number} Number in px
  */
 function remToPx(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -121,7 +121,7 @@ function remToPx(rem) {
                     <label><output name="percent">0</output>%</label>
                 </p>
             </form>
-            <p>Медиа запросы<br><code>if (window.matchMedia('(max-width: 40em)').matches) {doSomething();}</code></p>
+            <p>Media queries<br><code>if (window.matchMedia('(max-width: 40em)').matches) {doSomething();}</code></p>
         </article>
     </section>
     <section id="css">
@@ -147,7 +147,7 @@ function remToPx(rem) {
             </div>
         </article>
         <article id="css_fonts">
-            <h3>Подключение шрифтов</h3>
+            <h3>Fonts including</h3>
             <pre><code>@font-face {
     font-family: "PT Mono";
     src: url("../fonts/PTM55F_W.woff2") format("woff2"),
@@ -169,8 +169,8 @@ body {
 }</code></pre>
         </article>
         <article id="css_dashes">
-            <h3>Списки с тире</h3>
-            <p>Значение padding и text-indent зависит от ширины тире в шрифте.</p>
+            <h3>List with dashes</h3>
+            <p>Padding and text-indent values are relative to dash width in the font.</p>
             <pre><code>.list-dashes {
     list-style-type: none;
     padding-left: 1em;
@@ -206,7 +206,7 @@ body {
             </ul>
         </article>
         <article id="css_boilerplate">
-            <h3>Шаблон CSS</h3>
+            <h3>CSS Boilerplate</h3>
             <pre><code>html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -244,33 +244,33 @@ img {
     <section id="php">
         <h2>PHP</h2>
         <article id="php_format">
-            <h3>Форматирование чисел</h3>
+            <h3>Russian format for numbers</h3>
             <pre><code>/**
- * Расставляет неразрывные пробелы между разрядами и округляет дробную часть
+ * Formats numbers in Russian
  *
- * @param float $number Исходное число
+ * @param float $number Number
  *
- * @return string Строка с отформатированным числом
+ * @return string Formatted number
  */
 function number_format_groups(float $number): string {
     return number_format($number, 0, ',', ' ');
 }</code></pre>
         </article>
         <article id="php_tel">
-            <h3>Телефонные ссылки</h3>
+            <h3>Telephone links</h3>
             <pre><code>/**
- * Создание URL-ссылки из номера телефона 
+ * Creates tel: links from telephone number
  *
- * @param string $tel Номер телефона, например '+7 (999) 999-99-99'
+ * @param string $tel Telephone number e.g. '+7 (999) 999-99-99'
  *
- * @return string URL для атрибута href, например 'tel:%2B79999999999'
+ * @return string URL for href e.g. 'tel:%2B79999999999'
  */
 function telencode(string $tel): string {
     return 'tel:'.str_replace(['+', ' ', ' ', '(', ')', '-'], ['%2B'], $tel);
 }</code></pre>
         </article>
     </section>
-    <a class="link-solid" href="dontliem1.snippetslablibrary" download="dontliem1.snippetslablibrary">Скачать все фрагменты в формате SnippetsLab</a>
+    <a class="link-solid" href="dontliem1.snippetslablibrary" download="dontliem1.snippetslablibrary">Download all snippets in SnippetsLab format</a>
 </main>
 <template id="copy_btn" hidden><button class="btn-copy" aria-label="Скопировать фрагмент кода" title="Скопировать" type="button">📋</button></template>
 <script>
