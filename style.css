@@ -129,7 +129,6 @@ article {
     margin-bottom: 4em;
 }
 .snippets-header {
-    padding-right: 1.5em;
     display: inline-block;
 }
 .snippets-header a {
@@ -158,7 +157,8 @@ article {
 }
 .snippets-aside ul {
     list-style: none;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     margin: 0;
 }
 .snippets-aside li {
