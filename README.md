@@ -1,1 +1,1 @@
-Личный сайт Михаила Воробьева — разработчика сайтов из Тюмени.
+Personal site of Mikhail Vorobyov — web developer from Tyumen.
