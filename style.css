@@ -63,6 +63,9 @@ h2, p, li, code {
 .wnrs .link-solid {
     border-bottom-color: rgba(255, 255, 255, .3);
 }
+.wnrs .link-solid:hover {
+    border-bottom-color: #fff;
+}
 .link-solid {
     border-bottom-style: solid;
 }
@@ -209,7 +212,7 @@ input, .btn {
     position: relative;
 }
 .btn-copy::before {
-    content: 'Код скопирован';
+    content: 'Copied to clipboard';
     position: absolute;
     right: 0;
     top: 0;
