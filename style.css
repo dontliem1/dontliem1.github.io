@@ -10,6 +10,7 @@ html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     height: 100%;
+    accent-color: #c10016;
 }
 body {
     margin: 0;
@@ -58,7 +59,7 @@ h2, p, li, code {
     text-decoration: none;
     transition: border-bottom-color .2s;
     border-bottom-width: 1px;
-    border-bottom-color: rgba(0, 0, 0, .3);
+    border-bottom-color: ButtonFace;
 }
 .wnrs .link-solid {
     border-bottom-color: rgba(255, 255, 255, .3);
@@ -74,7 +75,7 @@ h2, p, li, code {
     touch-action: manipulation;
 }
 .link-solid:hover, .link-dashed:hover {
-    border-bottom-color: #000;
+    border-bottom-color: inherit;
 }
 .img-photo {
     border-radius: 50%;
@@ -243,25 +244,6 @@ input, .btn {
 #js_invert_target[aria-pressed=true]::before {content: 'aria-pressed="true"';}
 #js_invert_target[hidden]::after {content: ' hidden';}
 #js_invert_target[open]::after {content: ' open';}
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #202020;
-        color: white;
-    }
-
-    .link-solid, .link-dashed {
-        border-bottom-color: rgba(255, 255, 255, .5);
-    }
-
-    .link-solid:hover, .link-dashed:hover {
-        border-bottom-color: #fff;
-    }
-
-    code {
-        background-color: #2b2b2b;
-        color: #a9b7c6;
-    }
-}
 @media (min-width: 82em) {
     body {
         font-size: 125%;
