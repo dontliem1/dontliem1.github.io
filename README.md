@@ -1,1 +1,1 @@
-Personal site of Mikhail Vorobyov — web developer from Tyumen.
+Personal site of Mikhail Vorobyov — web developer from Saint-Petersburg.
